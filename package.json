@@ -1,0 +1,36 @@
+{
+  "name": "cr341",
+  "version": "1.0.0",
+  "description": "crudapp",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js",
+    "server": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/camilaar24/cr341.git"
+  },
+  "keywords": [
+    "crud",
+    "mongodb"
+  ],
+  "author": "Camila Gilbert",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/camilaar24/cr341/issues"
+  },
+  "homepage": "https://github.com/camilaar24/cr341#readme",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "dotenv": "^16.0.2",
+    "express": "^4.18.1",
+    "mongoose": "^6.6.2",
+    "morgan": "^1.10.0"
+  },
+  "devDependencies": {
+    "concurrently": "^7.4.0",
+    "nodemon": "^2.0.20"
+  }
+}
