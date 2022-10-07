@@ -1,10 +1,10 @@
-const transaction = require('../models/transaction');
+const Transaction = require('../models/transaction');
 
 // @desc Get all transactions
 // @route GET/api/v1/transactions
 exports.getTransactions = async (req, res, next) => {
     try {
-        const transactions = await transaction.find();
+        const transactions = await Transaction.find();
 
         return res.status(200).json({
             success: true,
@@ -27,7 +27,7 @@ exports.addTransaction = async (req, res, next) => {
     try {
         const { text, amount } = req.body;
 
-        const transactions = await transaction.create(req.body);
+        const transaction = await Transaction.create(req.body);
 
         return res.status(201).json({
             success: true,
@@ -48,7 +48,7 @@ exports.addTransaction = async (req, res, next) => {
                 error: 'Server Error'
             });
         }
-}
+    }
 }
 
 //// @desc update transaction
@@ -60,5 +60,27 @@ exports.updateTransaction = async (req, res, next) => {
 //// @desc Delete transaction
 // @route DELETE/api/v1/transactions/:id
 exports.deleteTransaction = async (req, res, next) => {
-    res.send('DELETE transaction');
+    try {
+        const transaction = await Transaction.findById(req.params.id);
+        
+        if(!transaction) {
+            return res.status(404).json({
+            success: false,
+            error: 'No transaction found'
+          });
+        }
+    
+        await transaction.remove();
+    
+        return res.status(200).json({
+          success: true,
+          data: {}
+        });
+    
+      } catch (err) {
+        return res.status(500).json({
+          success: false,
+          error: 'Server Error'
+        });
+    }
 }
